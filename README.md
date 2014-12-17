@@ -19,6 +19,9 @@ Both `dedupe_a` and `dedupe_b` re-export `mkdirp` for `dedupe` proper to invoke.
 running:
 
 ```sh
+git clone https://github.com/stefanpenner/dedupe.git
+cd dedupe
+npm i
 node index
 ```
 
