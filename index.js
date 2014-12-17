@@ -3,7 +3,8 @@ try {
   console.log('require("dedupe_a") succeeded');
 } catch(e) {
   console.log('require("dedupe_a") failed');
-  throw e;
+  console.error(e.message);
+  console.error(e.stack);
 }
 
 try {
@@ -11,7 +12,8 @@ try {
   console.log('require("dedupe_b") succeeded');
 } catch(e) {
   console.log('require("dedupe_b") failed');
-  throw e;
+  console.error(e.message);
+  console.error(e.stack);
 }
 
 
