@@ -14,7 +14,7 @@ versions of stuff:
 
 `dedupe`, depends on `dedupe_a` and `dedupe_b` which both depend on `mkdirp`.
 
-Both `dedupe_a` and `dedupe_b` re-export `mkdirp` for `dedupe` proper to invoke. Unfortunately, it appears that `dedupe_b` gets `mkdirp` but `dedupe_a` does not.
+Both `dedupe_a` and `dedupe_b` re-export `mkdirp` for `dedupe` proper to invoke.
 
 running:
 
@@ -22,32 +22,16 @@ running:
 git clone https://github.com/stefanpenner/dedupe.git
 cd dedupe
 npm i
-node index
+npm dedupe
 ```
 
-expected results
+Now mkdirp appears in the users package.json, and it becomes their
+responsbility to maintain a dedupe friendly version of mkdirp.
 
-```
-require("dedupe_a") succeeded
-require("dedupe_b") succeeded
+Additionally, if the user already has a a version of mkdirp but it is not a
+dedupe friendly version the dedupe stragety again is thrwated.
 
-```
+Now imagine this with 10 or 20 deps, it explodes into an un-maintainable state
+very quickly. Even at low numbers 1 or 2 this isn't at all reasonable
 
-actual results:
 
-```
-require("dedupe_a") failed
-Cannot find module 'mkdirp'
-Error: Cannot find module 'mkdirp'
-    at Function.Module._resolveFilename (module.js:336:15)
-    at Function.Module._load (module.js:278:25)
-    at Module.require (module.js:365:17)
-    at require (module.js:384:17)
-    at Object.<anonymous> (/Users/stefan/src/dedupe/node_modules/dedupe_a/index.js:1:80)
-    at Module._compile (module.js:460:26)
-    at Object.Module._extensions..js (module.js:478:10)
-    at Module.load (module.js:355:32)
-    at Function.Module._load (module.js:310:12)
-    at Module.require (module.js:365:17)
-require("dedupe_b") succeeded
-```
