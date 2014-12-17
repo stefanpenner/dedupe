@@ -1,3 +1,5 @@
+versions of stuff:
+
 ```js
 { http_parser: '2.3',
   node: '0.11.14',
@@ -11,6 +13,7 @@
 ```
 
 `dedupe`, depends on `dedupe_a` and `dedupe_b` which both depend on `mkdirp`.
+
 Both `dedupe_a` and `dedupe_b` re-export `mkdirp` for `dedupe` proper to invoke. Unfortunately, it appears that `dedupe_b` gets `mkdirp` but `dedupe_a` does not.
 
 running:
